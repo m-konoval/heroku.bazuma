@@ -1,0 +1,22 @@
+
+<div class="position-relative">
+    <ngb-carousel #slide>
+        <ng-template ngbSlide *ngFor="let slide of slides; let i = index">
+            <div class="carousel__slide" [style.background-image]="'url(' + slide.bgLink + ')'">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 [textContent]="slide.name" (click)="goToTopic(slide.hook)"></h3>
+                    <p [textContent]="i + '-' + slide.description"></p>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-carousel>
+
+    <div class="custom__dots">
+        <div class="custom__dots-item"
+            [class.active]="true"
+            *ngFor="let dot of slides"
+            (click)="goToTopic(slide, currentSlide)"
+            >
+        </div>
+    </div>
+</div>

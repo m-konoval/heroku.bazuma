@@ -1,0 +1,32 @@
+.carousel__slide {
+    height: 65vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.custom__dots {
+    display: flex;
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &-item {
+        width: 16px;
+        height: 16px;
+        background-color: #000000;
+        cursor: pointer;
+
+        & + & {
+            margin-left: 20px;
+        }
+
+        &.active {
+            background-color: #fff;
+        }
+    }
+}
