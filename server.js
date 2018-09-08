@@ -8,7 +8,7 @@ const mongoose      = require('mongoose');
 /* ----------- WORK SPACE ----------- */
 const app           = express();
 const port          = process.env.PORT || 8080;
-const DB_URI        = process.env.MONGODB_URI || 'mongodb://localhost:27017/dbbazuma';
+const DB_URI        = process.env.MONGODB_URI || 'mongodb://heroku_1fxhp73b:rtfcb2arqiqm46g7m5853nrkll@ds145412.mlab.com:45412/heroku_1fxhp73b';
 const LOCAL_DIR     = '/dist/webapp';
 const SERVER_DIR    = '/dist/webapp/index.html';
 
