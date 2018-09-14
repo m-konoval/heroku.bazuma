@@ -9,6 +9,7 @@ const mongoose      = require('mongoose');
 const app           = express();
 const port          = process.env.PORT || 8080;
 const DB_URI        = process.env.MONGODB_URI || 'mongodb://heroku_1fxhp73b:rtfcb2arqiqm46g7m5853nrkll@ds145412.mlab.com:45412/heroku_1fxhp73b';
+const DB_LOCAL      = 'mongodb://localhost:27017/dbbazuma';
 const LOCAL_DIR     = '/dist/webapp';
 const SERVER_DIR    = '/dist/webapp/index.html';
 
@@ -42,4 +43,8 @@ app.all('/*', function (req, res, next) {
 mongoose.Promise = global.Promise;
 mongoose.connect(DB_URI, { useNewUrlParser: true })
     .then(() => {console.log('OK')})
-    .catch((err) => console.log('My_Error: ' + err));
+    .catch((err) => {
+        console.log('My_Error: ' + err);
+    });
+
+
