@@ -3,6 +3,7 @@ const createError   = require('http-errors');
 const express       = require('express');
 const path          = require('path');
 const mongoose      = require('mongoose');
+const passport      = require('passport');
 
 
 /* ----------- WORK SPACE ----------- */
@@ -19,6 +20,7 @@ app.listen(port);
 
 app.use(express.json());
 app.use(express.static(__dirname + LOCAL_DIR));
+app.use(passport.initialize());
 
 app.get('/*', function(req,res) {
     res.sendFile(path.join(__dirname + SERVER_DIR));
@@ -41,10 +43,15 @@ app.all('/*', function (req, res, next) {
 
 /* ----------- start TEST connection MongoDB ----------- */
 mongoose.Promise = global.Promise;
-mongoose.connect(DB_URI, { useNewUrlParser: true })
-    .then(() => {console.log('OK')})
+mongoose.connect(DB_LOCAL, { useNewUrlParser: true })
+    .then((status) => {
+        console.log('OK ...' );
+    })
     .catch((err) => {
-        console.log('My_Error: ' + err);
-    });
+        console.log('error : ...', err );
+    } );
 
 
+/* ----------- autorun ----------- */
+require('./be/config/passport')(passport);
+require('./be/routes/routes')(app, passport);
