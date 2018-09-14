@@ -43,7 +43,7 @@ app.all('/*', function (req, res, next) {
 
 /* ----------- start TEST connection MongoDB ----------- */
 mongoose.Promise = global.Promise;
-mongoose.connect(DB_LOCAL, { useNewUrlParser: true })
+mongoose.connect(DB_URI, { useNewUrlParser: true })
     .then((status) => {
         console.log('OK ...' );
     })
