@@ -9,8 +9,7 @@ const passport      = require('passport');
 /* ----------- WORK SPACE ----------- */
 const app           = express();
 const port          = process.env.PORT || 8080;
-const DB_URI        = process.env.MONGODB_URI || 'mongodb://heroku_1fxhp73b:rtfcb2arqiqm46g7m5853nrkll@ds145412.mlab.com:45412/heroku_1fxhp73b';
-const DB_LOCAL      = 'mongodb://localhost:27017/dbbazuma';
+const DB_URI        = process.env.MONGODB_URI || 'mongodb://localhost:27017/dbbazuma';
 const LOCAL_DIR     = '/dist/webapp';
 const SERVER_DIR    = '/dist/webapp/index.html';
 
@@ -20,11 +19,11 @@ app.listen(port);
 
 app.use(express.json());
 app.use(express.static(__dirname + LOCAL_DIR));
-app.use(passport.initialize());
 
 app.get('/*', function(req,res) {
     res.sendFile(path.join(__dirname + SERVER_DIR));
 });
+require('./server/config/passport')(app, passport);
 
 
 /* ----------- HEADERS settings ----------- */
@@ -50,8 +49,3 @@ mongoose.connect(DB_URI, { useNewUrlParser: true })
     .catch((err) => {
         console.log('error : ...', err );
     } );
-
-
-/* ----------- autorun ----------- */
-require('./be/config/passport')(passport);
-require('./be/routes/routes')(app, passport);
