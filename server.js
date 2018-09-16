@@ -3,7 +3,6 @@ const createError   = require('http-errors');
 const express       = require('express');
 const path          = require('path');
 const mongoose      = require('mongoose');
-const passport      = require('passport');
 
 
 /* ----------- WORK SPACE ----------- */
@@ -19,11 +18,9 @@ app.listen(port);
 
 app.use(express.json());
 app.use(express.static(__dirname + LOCAL_DIR));
-
 app.get('/*', function(req,res) {
     res.sendFile(path.join(__dirname + SERVER_DIR));
 });
-require('./server/config/passport')(app, passport);
 
 
 /* ----------- HEADERS settings ----------- */
