@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthService } from './auth.service';
+import { FacebookModule, FacebookService } from 'ngx-facebook';
 
 const routes: Routes = [
     { path: 'auth', component: AuthComponent }
@@ -11,9 +12,10 @@ const routes: Routes = [
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes),
+        FacebookModule.forRoot()
     ],
     declarations: [AuthComponent],
-    providers: [AuthService]
+    providers: [AuthService, FacebookService]
 })
 export class AuthModule { }

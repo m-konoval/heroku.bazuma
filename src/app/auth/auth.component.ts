@@ -16,11 +16,7 @@ export class AuthComponent implements OnInit {
     }
 
     loginfb() {
-        this.authService.fbLogin().subscribe((res) => {
-            console.log(res);
-
-            this.result = res;
-        });
+        this.authService.loginWithFacebook();
     }
 
 }
