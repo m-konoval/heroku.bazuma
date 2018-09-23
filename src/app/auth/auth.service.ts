@@ -24,7 +24,10 @@ export class AuthService {
     loginWithFacebook(): void {
 
         this.fb.login()
-            .then((response: LoginResponse) => console.log(response))
+        .then((response: LoginResponse) => {
+            console.log(response);
+            this.http.post('/auth/')
+        })
             .catch((error: any) => console.error(error));
     }
 

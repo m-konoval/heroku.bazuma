@@ -3,12 +3,13 @@ const createError   = require('http-errors');
 const express       = require('express');
 const path          = require('path');
 const mongoose      = require('mongoose');
+const routes        = require('./server/routes/routes');
 
 
 /* ----------- WORK SPACE ----------- */
 const app           = express();
 const port          = process.env.PORT || 8080;
-const DB_URI        = process.env.MONGODB_URI || 'mongodb://localhost:27017/dbbazuma';
+const DB_URI        = process.env.MONGODB_URI || 'mongodb:y//localhost:27017/dbbazuma';
 const LOCAL_DIR     = '/dist/webapp';
 const SERVER_DIR    = '/dist/webapp/index.html';
 
@@ -21,6 +22,8 @@ app.use(express.static(__dirname + LOCAL_DIR));
 app.get('/*', function(req,res) {
     res.sendFile(path.join(__dirname + SERVER_DIR));
 });
+
+routes(app);
 
 
 /* ----------- HEADERS settings ----------- */
